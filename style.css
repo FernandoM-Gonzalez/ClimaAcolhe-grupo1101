@@ -1,0 +1,131 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f7f3;
+    color: #222;
+    margin: 0;
+}
+
+header {
+    background-color: #2f6b45;
+    color: white;
+    padding: 18px;
+    text-align: center;
+}
+
+header img {
+    width: 55px;
+    vertical-align: middle;
+}
+
+nav {
+    background-color: #e4eee7;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: #204b31;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    width: 85%;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+h1, h2, h3 {
+    color: #2f6b45;
+}
+
+header h1 {
+    color: white;
+}
+
+.caixa {
+    border: 1px solid #bbb;
+    padding: 15px;
+    margin-bottom: 18px;
+    background-color: #fafafa;
+}
+
+.aviso {
+    background-color: #fff4cc;
+    border: 1px solid #d6b84b;
+    padding: 12px;
+    margin: 15px 0;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 95%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #aaa;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    width: auto;
+}
+
+.opcao label {
+    display: inline;
+    font-weight: normal;
+}
+
+button, .botao {
+    display: inline-block;
+    background-color: #2f6b45;
+    color: white;
+    padding: 9px 14px;
+    border: none;
+    text-decoration: none;
+    margin-top: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #aaa;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #e4eee7;
+}
+
+.alta {
+    font-weight: bold;
+    color: #a40000;
+}
+
+.media {
+    font-weight: bold;
+    color: #8a6500;
+}
+
+.baixa {
+    font-weight: bold;
+    color: #256137;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #555;
+}

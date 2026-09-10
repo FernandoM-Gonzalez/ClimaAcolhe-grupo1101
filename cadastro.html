@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Tela de cadastro de moradia do protótipo ClimaAcolhe.">
+    <title>ClimaAcolhe - Cadastro de Moradia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>Cadastro da Moradia</h1></header>
+<nav>
+    <a href="index.html">Início</a><a href="cadastro.html">Moradia</a><a href="checkin.html">Check-in</a><a href="painel.html">Painel</a><a href="intervencao.html">Intervenção</a>
+</nav>
+<main>
+    <h2>Dados básicos</h2>
+    <p>Preenchimento assistido pela equipe da associação ou ONG.</p>
+    <form action="#" method="post">
+        <fieldset>
+            <legend>Identificação</legend>
+            <label for="codigo">Código da moradia:</label>
+            <input type="text" id="codigo" name="codigo" placeholder="Ex.: MOR-001" required>
+
+            <label for="bairro">Bairro:</label>
+            <input type="text" id="bairro" name="bairro" placeholder="Ex.: Jardim Exemplo" required>
+
+            <label for="referencia">Referência aproximada:</label>
+            <input type="text" id="referencia" name="referencia" placeholder="Ex.: próximo à praça">
+
+            <label for="moradores">Quantidade de moradores:</label>
+            <input type="number" id="moradores" name="moradores" min="1">
+        </fieldset>
+        <button type="submit">Salvar moradia</button>
+    </form>
+    <div class="aviso">O botão ainda não salva dados. O cadastro em banco de dados será implementado em uma etapa futura.</div>
+    <a class="botao" href="checkin.html">Ir para o check-in</a>
+</main>
+<footer><small>ClimaAcolhe - Protótipo em HTML e CSS</small></footer>
+</body>
+</html>

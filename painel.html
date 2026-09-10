@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Painel demonstrativo de prioridades do ClimaAcolhe.">
+    <title>ClimaAcolhe - Painel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>Painel da Associação</h1></header>
+<nav>
+    <a href="index.html">Início</a><a href="cadastro.html">Moradia</a><a href="checkin.html">Check-in</a><a href="painel.html">Painel</a><a href="intervencao.html">Intervenção</a>
+</nav>
+<main>
+    <h2>Pedidos de apoio</h2>
+    <p>Exemplo de como os casos poderão ser organizados por prioridade.</p>
+    <table>
+        <caption>Dados fictícios para demonstração</caption>
+        <thead>
+            <tr><th scope="col">Moradia</th><th scope="col">IPTD</th><th scope="col">Prioridade</th><th scope="col">Situação</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>MOR-003</td><td>8</td><td class="alta">Alta</td><td>Pendente</td></tr>
+            <tr><td>MOR-001</td><td>6</td><td class="media">Média</td><td>Em atendimento</td></tr>
+            <tr><td>MOR-004</td><td>4</td><td class="media">Média</td><td>Pendente</td></tr>
+            <tr><td>MOR-002</td><td>2</td><td class="baixa">Baixa</td><td>Concluído</td></tr>
+        </tbody>
+    </table>
+
+    <section class="caixa">
+        <h2>Exemplo de pontuação - MOR-003</h2>
+        <ul>
+            <li>Calor percebido: 2 pontos</li>
+            <li>Sono: 1 ponto</li>
+            <li>Moradia: 2 pontos</li>
+            <li>Água: 1 ponto</li>
+            <li>Pessoa mais sensível: 2 pontos</li>
+        </ul>
+        <p><strong>Total: 8 pontos - prioridade alta.</strong></p>
+    </section>
+
+    <div class="aviso">A lista acima é estática. Ordenação automática, filtros e dados reais dependerão de JavaScript/back-end e banco de dados, que serão implementados futuramente.</div>
+    <a class="botao" href="intervencao.html">Registrar intervenção de exemplo</a>
+</main>
+<footer><small>ClimaAcolhe - Protótipo em HTML e CSS</small></footer>
+</body>
+</html>

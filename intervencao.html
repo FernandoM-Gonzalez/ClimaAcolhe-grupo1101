@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Registro de intervenção do protótipo ClimaAcolhe.">
+    <title>ClimaAcolhe - Intervenção</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>Registro de Intervenção</h1></header>
+<nav>
+    <a href="index.html">Início</a><a href="cadastro.html">Moradia</a><a href="checkin.html">Check-in</a><a href="painel.html">Painel</a><a href="intervencao.html">Intervenção</a>
+</nav>
+<main>
+    <form action="#" method="post">
+        <fieldset>
+            <legend>Atendimento</legend>
+            <label for="codigo">Código da moradia:</label>
+            <input type="text" id="codigo" name="codigo" value="MOR-003">
+
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data">
+
+            <label for="situacao">Situação:</label>
+            <select id="situacao" name="situacao">
+                <option>Pendente</option>
+                <option>Em atendimento</option>
+                <option>Concluído</option>
+            </select>
+
+            <label for="acao">Ação realizada:</label>
+            <textarea id="acao" name="acao" rows="5" placeholder="Ex.: orientação sobre ventilação e instalação de sombreamento com material doado."></textarea>
+        </fieldset>
+        <button type="submit">Registrar intervenção</button>
+    </form>
+
+    <div class="aviso">O registro ainda não será armazenado. O histórico de intervenções e novos check-ins será ligado ao banco de dados em uma etapa futura.</div>
+
+    <section class="caixa">
+        <h2>Histórico esperado</h2>
+        <table>
+            <caption>Exemplo fictício</caption>
+            <thead><tr><th scope="col">Data</th><th scope="col">Ação</th><th scope="col">Situação</th></tr></thead>
+            <tbody><tr><td>08/09/2026</td><td>Orientação inicial e análise da moradia</td><td>Em atendimento</td></tr></tbody>
+        </table>
+    </section>
+</main>
+<footer><small>ClimaAcolhe - Protótipo em HTML e CSS</small></footer>
+</body>
+</html>

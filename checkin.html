@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Check-in térmico do protótipo ClimaAcolhe.">
+    <title>ClimaAcolhe - Check-in Térmico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><h1>Check-in Térmico</h1></header>
+<nav>
+    <a href="index.html">Início</a><a href="cadastro.html">Moradia</a><a href="checkin.html">Check-in</a><a href="painel.html">Painel</a><a href="intervencao.html">Intervenção</a>
+</nav>
+<main>
+    <p>As perguntas abaixo representam os critérios planejados para o <strong>IPTD - Índice de Prioridade Térmica Domiciliar</strong>.</p>
+    <form action="#" method="post">
+        <fieldset>
+            <legend>Relato do momento</legend>
+            <label for="moradia">Código da moradia:</label>
+            <input type="text" id="moradia" name="moradia" placeholder="MOR-001" required>
+
+            <label for="calor">Calor percebido:</label>
+            <select id="calor" name="calor">
+                <option>Sem incômodo</option>
+                <option>Incômodo leve</option>
+                <option>Dificulta as atividades</option>
+            </select>
+
+            <label for="sono">Sono na última noite:</label>
+            <select id="sono" name="sono">
+                <option>Sem alteração</option>
+                <option>Dificuldade ou um despertar</option>
+                <option>Dois ou mais despertares / não dormiu</option>
+            </select>
+
+            <p><strong>Condições da moradia:</strong></p>
+            <div class="opcao"><input type="checkbox" id="ar" name="ar"><label for="ar"> Pouca circulação de ar</label></div>
+            <div class="opcao"><input type="checkbox" id="sombra" name="sombra"><label for="sombra"> Ausência de sombra</label></div>
+
+            <label for="agua">Água para beber:</label>
+            <select id="agua" name="agua">
+                <option>Disponível e sem falta nas últimas 24h</option>
+                <option>Disponível agora, mas faltou nas últimas 24h</option>
+                <option>Indisponível no momento</option>
+            </select>
+
+            <p><strong>Há pessoa mais sensível ao calor na moradia?</strong></p>
+            <div class="opcao"><input type="radio" id="sim" name="sensivel" value="sim"><label for="sim"> Sim</label></div>
+            <div class="opcao"><input type="radio" id="nao" name="sensivel" value="nao"><label for="nao"> Não</label></div>
+        </fieldset>
+        <button type="submit">Calcular prioridade</button>
+    </form>
+    <div class="aviso">Nesta prévia o cálculo automático ainda não funciona, pois exigirá lógica de programação. O IPTD será implementado futuramente. Para a demonstração, o painel usa dados fictícios.</div>
+    <a class="botao" href="painel.html">Ver painel com exemplo</a>
+</main>
+<footer><small>ClimaAcolhe - Protótipo em HTML e CSS</small></footer>
+</body>
+</html>
