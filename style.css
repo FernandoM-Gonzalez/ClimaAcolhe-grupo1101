@@ -1,56 +1,89 @@
+/* Ajustes gerais para evitar estouro de largura em telas pequenas */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f3f7f3;
     color: #222;
     margin: 0;
+    line-height: 1.5;
 }
 
 header {
     background-color: #2f6b45;
     color: white;
-    padding: 18px;
+    padding: 14px 10px;
     text-align: center;
 }
 
 header img {
     width: 55px;
+    max-width: 100%;
+    height: auto;
     vertical-align: middle;
 }
 
+header h1 {
+    color: white;
+    font-size: 1.8rem;
+    margin: 8px 0;
+}
+
+header p {
+    margin: 6px 0 0;
+}
+
+/* Base mobile-first: menu em duas colunas para facilitar o toque */
 nav {
     background-color: #e4eee7;
-    padding: 10px;
-    text-align: center;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
 }
 
 nav a {
     color: #204b31;
-    margin: 0 10px;
     text-decoration: none;
     font-weight: bold;
+    text-align: center;
+    border: 1px solid #b7cbbb;
+    padding: 10px 6px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-wrap: anywhere;
 }
 
 main {
-    width: 85%;
+    width: calc(100% - 20px);
     max-width: 900px;
-    margin: 20px auto;
+    margin: 10px auto;
     background-color: white;
-    padding: 20px;
+    padding: 12px;
     border: 1px solid #ccc;
+    overflow-wrap: anywhere;
 }
 
 h1, h2, h3 {
     color: #2f6b45;
 }
 
-header h1 {
-    color: white;
+h2 {
+    font-size: 1.35rem;
 }
 
 .caixa {
     border: 1px solid #bbb;
-    padding: 15px;
-    margin-bottom: 18px;
+    padding: 12px;
+    margin-bottom: 16px;
     background-color: #fafafa;
 }
 
@@ -61,6 +94,18 @@ header h1 {
     margin: 15px 0;
 }
 
+fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 12px;
+    border: 1px solid #aaa;
+}
+
+legend {
+    padding: 0 5px;
+    font-weight: bold;
+}
+
 label {
     display: block;
     margin-top: 10px;
@@ -68,41 +113,74 @@ label {
 }
 
 input, select, textarea {
-    width: 95%;
-    padding: 8px;
+    width: 100%;
+    max-width: 100%;
+    min-height: 44px;
+    padding: 10px;
     margin-top: 4px;
-    border: 1px solid #aaa;
+    border: 1px solid #777;
+    background-color: white;
+    font: inherit;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
 }
 
 input[type="radio"], input[type="checkbox"] {
-    width: auto;
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+    margin: 0;
+    flex: 0 0 auto;
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 6px 0;
 }
 
 .opcao label {
     display: inline;
     font-weight: normal;
+    margin: 0;
 }
 
 button, .botao {
-    display: inline-block;
+    display: block;
+    width: 100%;
+    min-height: 44px;
     background-color: #2f6b45;
     color: white;
-    padding: 9px 14px;
-    border: none;
+    padding: 10px 14px;
+    border: 1px solid #204b31;
     text-decoration: none;
+    text-align: center;
     margin-top: 12px;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
 }
 
+/* Tabelas continuam utilizáveis no celular com rolagem horizontal */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 th, td {
     border: 1px solid #aaa;
     padding: 8px;
     text-align: left;
+    white-space: nowrap;
 }
 
 th {
@@ -126,6 +204,63 @@ th {
 
 footer {
     text-align: center;
-    padding: 15px;
+    padding: 15px 10px;
     color: #555;
+}
+
+/* Telas muito estreitas: menu em uma coluna */
+@media (max-width: 360px) {
+    nav {
+        grid-template-columns: 1fr;
+    }
+
+    header h1 {
+        font-size: 1.55rem;
+    }
+}
+
+/* Tablet e desktop: volta para um layout mais aberto */
+@media (min-width: 700px) {
+    header {
+        padding: 18px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0;
+        padding: 10px;
+    }
+
+    nav a {
+        border: 0;
+        min-height: 0;
+        padding: 6px 10px;
+    }
+
+    main {
+        width: 85%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .caixa {
+        padding: 15px;
+        margin-bottom: 18px;
+    }
+
+    button, .botao {
+        display: inline-block;
+        width: auto;
+    }
+
+    table {
+        display: table;
+        overflow-x: visible;
+    }
+
+    th, td {
+        white-space: normal;
+    }
 }
