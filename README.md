@@ -5,7 +5,7 @@ CLIMAACOLHE - PROTÓTIPO PARA A PRÉVIA 3
 Tecnologias usadas:
 - HTML5
 - CSS básico
-- Java Script
+- JavaScript
 
 Como abrir:
 2. Abra o arquivo index.html no navegador.
