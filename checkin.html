@@ -3,57 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Check-in térmico do protótipo ClimaAcolhe.">
+    <meta name="description" content="ClimaAcolhe - apoio à triagem comunitária em períodos de calor.">
     <title>ClimaAcolhe - Check-in Térmico</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="js/config.js"></script>
+    <script defer src="js/storage.js"></script>
+    <script defer src="js/auth.js"></script>
+    <script defer src="js/iptd.js"></script>
+    <script defer src="js/api.js"></script>
+    <script defer src="js/painel.js"></script>
+    <script defer src="js/validation.js"></script>
+    <script defer src="js/weather.js"></script>
+    <script defer src="js/ui.js"></script>
+    <script defer src="js/app.js"></script>
 </head>
-<body>
-<header><h1>Check-in Térmico</h1></header>
-<nav>
-    <a href="index.html">Início</a><a href="cadastro.html">Moradia</a><a href="checkin.html">Check-in</a><a href="painel.html">Painel</a><a href="intervencao.html">Intervenção</a>
+<body data-page="checkin">
+<header><h1>Check-in Térmico</h1><aside id="weather-widget" class="weather-widget" aria-label="Tempo de hoje"></aside></header>
+<nav aria-label="Navegação principal">
+    <a href="inicio.html">Início</a>
+    <a href="cadastro.html">Moradia</a>
+    <a href="checkin.html">Check-in</a>
+    <a href="painel.html">Painel</a>
+    <a href="intervencao.html">Intervenção</a>
+    <button type="button" id="sair">Sair</button>
 </nav>
-<main>
-    <p>As perguntas abaixo representam os critérios planejados para o <strong>IPTD - Índice de Prioridade Térmica Domiciliar</strong>.</p>
-    <form action="#" method="post">
-        <fieldset>
-            <legend>Relato do momento</legend>
-            <label for="moradia">Código da moradia:</label>
-            <input type="text" id="moradia" name="moradia" placeholder="MOR-001" required>
-
-            <label for="calor">Calor percebido:</label>
-            <select id="calor" name="calor">
-                <option>Sem incômodo</option>
-                <option>Incômodo leve</option>
-                <option>Dificulta as atividades</option>
-            </select>
-
-            <label for="sono">Sono na última noite:</label>
-            <select id="sono" name="sono">
-                <option>Sem alteração</option>
-                <option>Dificuldade ou um despertar</option>
-                <option>Dois ou mais despertares / não dormiu</option>
-            </select>
-
-            <p><strong>Condições da moradia:</strong></p>
-            <div class="opcao"><input type="checkbox" id="ar" name="ar"><label for="ar"> Pouca circulação de ar</label></div>
-            <div class="opcao"><input type="checkbox" id="sombra" name="sombra"><label for="sombra"> Ausência de sombra</label></div>
-
-            <label for="agua">Água para beber:</label>
-            <select id="agua" name="agua">
-                <option>Disponível e sem falta nas últimas 24h</option>
-                <option>Disponível agora, mas faltou nas últimas 24h</option>
-                <option>Indisponível no momento</option>
-            </select>
-
-            <p><strong>Há pessoa mais sensível ao calor na moradia?</strong></p>
-            <div class="opcao"><input type="radio" id="sim" name="sensivel" value="sim"><label for="sim"> Sim</label></div>
-            <div class="opcao"><input type="radio" id="nao" name="sensivel" value="nao"><label for="nao"> Não</label></div>
-        </fieldset>
-        <button type="submit">Calcular prioridade</button>
-    </form>
-    <div class="aviso">Nesta prévia o cálculo automático ainda não funciona, pois exigirá lógica de programação. O IPTD será implementado futuramente. Para a demonstração, o painel usa dados fictícios.</div>
-    <a class="botao" href="painel.html">Ver painel com exemplo</a>
+<p class="sessao"><span id="usuario"></span> | <span id="mode-notice"></span></p>
+<noscript><p class="aviso">Ative o JavaScript para utilizar o ClimaAcolhe.</p></noscript>
+<main hidden>
+    <div id="feedback" class="aviso" hidden tabindex="-1"></div>
+    <p>As perguntas abaixo representam os critérios do <strong>IPTD - Índice de Prioridade Térmica Domiciliar</strong>.</p><section class="aviso score-card" aria-label="Prévia do IPTD"><h2>Prévia do IPTD: <output id="score-value" aria-live="polite">—</output> / 10</h2><div id="score-priority"></div><p id="score-description" aria-live="polite"></p><progress id="score-progress" max="6" value="0" aria-label="Respostas preenchidas"></progress><small id="score-completion"></small><details><summary>Ver parcelas da pontuação</summary><dl><dt>Calor</dt><dd id="points-calor">— / 2</dd><dt>Sono</dt><dd id="points-sono">— / 2</dd><dt>Moradia</dt><dd id="points-moradia">— / 2</dd><dt>Água</dt><dd id="points-agua">— / 2</dd><dt>Pessoa sensível</dt><dd id="points-pessoas">— / 2</dd></dl><p>0 a 3: baixa; 4 a 6: média; 7 a 10: alta. O clima externo não altera o IPTD.</p></details></section><form id="checkin-form" novalidate><fieldset><legend>Relato do momento</legend><label for="codigo">Código da moradia:</label>
+<select id="codigo" name="codigo" required aria-describedby="erro-codigo"><option value="">Carregando moradias…</option></select>
+<span id="erro-codigo" class="field-error" data-error-for="codigo" aria-live="polite"></span>
+<div id="no-homes" class="aviso" hidden>Cadastre uma moradia antes de fazer o check-in. <a href="cadastro.html">Cadastrar moradia</a></div><label for="calor">Calor percebido:</label>
+<select id="calor" name="calor" required aria-describedby="erro-calor"><option value="">Selecione</option><option value="0">Sem incômodo</option><option value="1">Incômodo leve</option><option value="2">Dificulta as atividades</option></select>
+<span id="erro-calor" class="field-error" data-error-for="calor" aria-live="polite"></span>
+<label for="sono">Sono na última noite:</label>
+<select id="sono" name="sono" required aria-describedby="erro-sono"><option value="">Selecione</option><option value="0">Sem alteração</option><option value="1">Dificuldade ou um despertar</option><option value="2">Dois ou mais despertares / não dormiu</option></select>
+<span id="erro-sono" class="field-error" data-error-for="sono" aria-live="polite"></span>
+<p><strong>Há pouca circulação de ar no cômodo mais usado?</strong></p>
+<div class="opcao"><input type="radio" id="ar-sim" name="ar" value="1" required aria-describedby="erro-ar"><label for="ar-sim">Sim</label></div>
+<div class="opcao"><input type="radio" id="ar-nao" name="ar" value="0" aria-describedby="erro-ar"><label for="ar-nao">Não</label></div>
+<span id="erro-ar" class="field-error" data-error-for="ar" aria-live="polite"></span><p><strong>Falta sombra na moradia?</strong></p>
+<div class="opcao"><input type="radio" id="sombra-sim" name="sombra" value="1" required aria-describedby="erro-sombra"><label for="sombra-sim">Sim</label></div>
+<div class="opcao"><input type="radio" id="sombra-nao" name="sombra" value="0" aria-describedby="erro-sombra"><label for="sombra-nao">Não</label></div>
+<span id="erro-sombra" class="field-error" data-error-for="sombra" aria-live="polite"></span><label for="agua">Água para beber:</label>
+<select id="agua" name="agua" required aria-describedby="erro-agua"><option value="">Selecione</option><option value="0">Disponível e sem falta nas últimas 24h</option><option value="1">Disponível agora, mas faltou nas últimas 24h</option><option value="2">Indisponível no momento</option></select>
+<span id="erro-agua" class="field-error" data-error-for="agua" aria-live="polite"></span>
+<p><strong>Há criança, idoso ou pessoa mais sensível ao calor na moradia?</strong></p>
+<div class="opcao"><input type="radio" id="sensivel-sim" name="sensivel" value="1" required aria-describedby="erro-sensivel"><label for="sensivel-sim">Sim</label></div>
+<div class="opcao"><input type="radio" id="sensivel-nao" name="sensivel" value="0" aria-describedby="erro-sensivel"><label for="sensivel-nao">Não</label></div>
+<span id="erro-sensivel" class="field-error" data-error-for="sensivel" aria-live="polite"></span></fieldset><button type="submit">Salvar check-in</button></form><a class="botao" href="painel.html">Ver painel</a>
 </main>
-<footer><small>ClimaAcolhe - Protótipo em HTML e CSS</small></footer>
+<footer><small>ClimaAcolhe - Grupo 1101 - 3ª entrega</small></footer>
 </body>
 </html>

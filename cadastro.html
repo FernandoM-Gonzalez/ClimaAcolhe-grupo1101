@@ -3,38 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tela de cadastro de moradia do protótipo ClimaAcolhe.">
-    <title>ClimaAcolhe - Cadastro de Moradia</title>
+    <meta name="description" content="ClimaAcolhe - apoio à triagem comunitária em períodos de calor.">
+    <title>ClimaAcolhe - Cadastro da Moradia</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="js/config.js"></script>
+    <script defer src="js/storage.js"></script>
+    <script defer src="js/auth.js"></script>
+    <script defer src="js/iptd.js"></script>
+    <script defer src="js/api.js"></script>
+    <script defer src="js/painel.js"></script>
+    <script defer src="js/validation.js"></script>
+    <script defer src="js/weather.js"></script>
+    <script defer src="js/ui.js"></script>
+    <script defer src="js/app.js"></script>
 </head>
-<body>
-<header><h1>Cadastro da Moradia</h1></header>
-<nav>
-    <a href="index.html">Início</a><a href="cadastro.html">Moradia</a><a href="checkin.html">Check-in</a><a href="painel.html">Painel</a><a href="intervencao.html">Intervenção</a>
+<body data-page="cadastro">
+<header><h1>Cadastro da Moradia</h1><aside id="weather-widget" class="weather-widget" aria-label="Tempo de hoje"></aside></header>
+<nav aria-label="Navegação principal">
+    <a href="inicio.html">Início</a>
+    <a href="cadastro.html">Moradia</a>
+    <a href="checkin.html">Check-in</a>
+    <a href="painel.html">Painel</a>
+    <a href="intervencao.html">Intervenção</a>
+    <button type="button" id="sair">Sair</button>
 </nav>
-<main>
-    <h2>Dados básicos</h2>
-    <p>Preenchimento assistido pela equipe da associação ou ONG.</p>
-    <form action="#" method="post">
-        <fieldset>
-            <legend>Identificação</legend>
-            <label for="codigo">Código da moradia:</label>
-            <input type="text" id="codigo" name="codigo" placeholder="Ex.: MOR-001" required>
-
-            <label for="bairro">Bairro:</label>
-            <input type="text" id="bairro" name="bairro" placeholder="Ex.: Jardim Exemplo" required>
-
-            <label for="referencia">Referência aproximada:</label>
-            <input type="text" id="referencia" name="referencia" placeholder="Ex.: próximo à praça">
-
-            <label for="moradores">Quantidade de moradores:</label>
-            <input type="number" id="moradores" name="moradores" min="1">
-        </fieldset>
-        <button type="submit">Salvar moradia</button>
-    </form>
-    <div class="aviso">O botão ainda não salva dados. O cadastro em banco de dados será implementado em uma etapa futura.</div>
-    <a class="botao" href="checkin.html">Ir para o check-in</a>
+<p class="sessao"><span id="usuario"></span> | <span id="mode-notice"></span></p>
+<noscript><p class="aviso">Ative o JavaScript para utilizar o ClimaAcolhe.</p></noscript>
+<main hidden>
+    <div id="feedback" class="aviso" hidden tabindex="-1"></div>
+    <h2>Dados básicos</h2><p>Preenchimento assistido pela equipe da associação ou ONG.</p>
+<form id="moradia-form" novalidate><fieldset><legend>Identificação</legend><label for="codigo">Código da moradia:</label>
+<input type="text" id="codigo" name="codigo" placeholder="Ex.: MOR-001" required maxlength="10" aria-describedby="erro-codigo">
+<span id="erro-codigo" class="field-error" data-error-for="codigo" aria-live="polite"></span>
+<label for="bairro">Bairro:</label>
+<input type="text" id="bairro" name="bairro" placeholder="Ex.: Jardim Exemplo" required minlength="2" maxlength="80" aria-describedby="erro-bairro">
+<span id="erro-bairro" class="field-error" data-error-for="bairro" aria-live="polite"></span>
+<label for="referencia">Referência aproximada (opcional):</label>
+<input type="text" id="referencia" name="referencia" placeholder="Ex.: próximo à praça" maxlength="160" aria-describedby="erro-referencia">
+<span id="erro-referencia" class="field-error" data-error-for="referencia" aria-live="polite"></span>
+<label for="moradores">Quantidade de moradores:</label>
+<input type="number" id="moradores" name="moradores" min="1" max="30" step="1" required aria-describedby="erro-moradores">
+<span id="erro-moradores" class="field-error" data-error-for="moradores" aria-live="polite"></span>
+</fieldset><button type="submit">Salvar moradia</button></form><div id="moradia-next" hidden><a class="botao" id="next-checkin" href="checkin.html">Ir para o check-in desta moradia</a></div>
 </main>
-<footer><small>ClimaAcolhe - Protótipo em HTML e CSS</small></footer>
+<footer><small>ClimaAcolhe - Grupo 1101 - 3ª entrega</small></footer>
 </body>
 </html>

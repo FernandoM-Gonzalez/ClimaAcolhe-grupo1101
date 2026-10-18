@@ -3,46 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Painel demonstrativo de prioridades do ClimaAcolhe.">
-    <title>ClimaAcolhe - Painel</title>
+    <meta name="description" content="ClimaAcolhe - apoio à triagem comunitária em períodos de calor.">
+    <title>ClimaAcolhe - Painel da Associação</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="js/config.js"></script>
+    <script defer src="js/storage.js"></script>
+    <script defer src="js/auth.js"></script>
+    <script defer src="js/iptd.js"></script>
+    <script defer src="js/api.js"></script>
+    <script defer src="js/painel.js"></script>
+    <script defer src="js/validation.js"></script>
+    <script defer src="js/weather.js"></script>
+    <script defer src="js/ui.js"></script>
+    <script defer src="js/app.js"></script>
 </head>
-<body>
-<header><h1>Painel da Associação</h1></header>
-<nav>
-    <a href="index.html">Início</a><a href="cadastro.html">Moradia</a><a href="checkin.html">Check-in</a><a href="painel.html">Painel</a><a href="intervencao.html">Intervenção</a>
+<body data-page="painel">
+<header><h1>Painel da Associação</h1><aside id="weather-widget" class="weather-widget" aria-label="Tempo de hoje"></aside></header>
+<nav aria-label="Navegação principal">
+    <a href="inicio.html">Início</a>
+    <a href="cadastro.html">Moradia</a>
+    <a href="checkin.html">Check-in</a>
+    <a href="painel.html">Painel</a>
+    <a href="intervencao.html">Intervenção</a>
+    <button type="button" id="sair">Sair</button>
 </nav>
-<main>
-    <h2>Pedidos de apoio</h2>
-    <p>Exemplo de como os casos poderão ser organizados por prioridade.</p>
-    <table>
-        <caption>Dados fictícios para demonstração</caption>
-        <thead>
-            <tr><th scope="col">Moradia</th><th scope="col">IPTD</th><th scope="col">Prioridade</th><th scope="col">Situação</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>MOR-003</td><td>8</td><td class="alta">Alta</td><td>Pendente</td></tr>
-            <tr><td>MOR-001</td><td>6</td><td class="media">Média</td><td>Em atendimento</td></tr>
-            <tr><td>MOR-004</td><td>4</td><td class="media">Média</td><td>Pendente</td></tr>
-            <tr><td>MOR-002</td><td>2</td><td class="baixa">Baixa</td><td>Concluído</td></tr>
-        </tbody>
-    </table>
-
-    <section class="caixa">
-        <h2>Exemplo de pontuação - MOR-003</h2>
-        <ul>
-            <li>Calor percebido: 2 pontos</li>
-            <li>Sono: 1 ponto</li>
-            <li>Moradia: 2 pontos</li>
-            <li>Água: 1 ponto</li>
-            <li>Pessoa mais sensível: 2 pontos</li>
-        </ul>
-        <p><strong>Total: 8 pontos - prioridade alta.</strong></p>
-    </section>
-
-    <div class="aviso">A lista acima é estática. Ordenação automática, filtros e dados reais dependerão de JavaScript/back-end e banco de dados, que serão implementados futuramente.</div>
-    <a class="botao" href="intervencao.html">Registrar intervenção de exemplo</a>
+<p class="sessao"><span id="usuario"></span> | <span id="mode-notice"></span></p>
+<noscript><p class="aviso">Ative o JavaScript para utilizar o ClimaAcolhe.</p></noscript>
+<main hidden>
+    <div id="feedback" class="aviso" hidden tabindex="-1"></div>
+    <h2>Pedidos de apoio</h2><p>Casos abertos são ordenados pela maior prioridade. Empates seguem a abertura mais antiga.</p>
+<section class="caixa"><h2>Resumo</h2><p>Moradias: <strong id="stat-total">0</strong> | Alta em aberto: <strong id="stat-high">0</strong> | Em atendimento: <strong id="stat-progress">0</strong> | Concluídos: <strong id="stat-done">0</strong></p></section>
+<section class="dashboard-card"><fieldset><legend>Filtros</legend><label for="search">Moradia ou bairro:</label><input type="search" id="search" placeholder="Ex.: MOR-001"><label for="filter-priority">Prioridade:</label><select id="filter-priority"><option value="">Todas</option><option>Alta</option><option>Média</option><option>Baixa</option><option>Sem check-in</option></select><label for="filter-status">Situação:</label><select id="filter-status"><option value="">Todas</option><option>Pendente</option><option>Em atendimento</option><option>Concluído</option></select></fieldset>
+<p id="results-count" aria-live="polite"></p><div class="table-wrap"><table><caption>Último check-in de cada moradia</caption><thead><tr><th scope="col">Moradia / bairro</th><th scope="col">IPTD</th><th scope="col">Prioridade</th><th scope="col">Situação</th><th scope="col">Último check-in</th><th scope="col">Ações</th></tr></thead><tbody id="queue-body"></tbody></table></div><div class="aviso" id="queue-empty" hidden><p id="queue-empty-text"></p><a href="cadastro.html">Cadastrar moradia</a></div></section>
+<div class="aviso" id="demo-tools"><p>Para testar com os casos fictícios do protótipo:</p><button type="button" id="load-examples">Carregar exemplos</button></div><a class="botao" href="intervencao.html">Registrar intervenção</a>
 </main>
-<footer><small>ClimaAcolhe - Protótipo em HTML e CSS</small></footer>
+<footer><small>ClimaAcolhe - Grupo 1101 - 3ª entrega</small></footer>
 </body>
 </html>

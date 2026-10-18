@@ -264,3 +264,43 @@ footer {
         white-space: normal;
     }
 }
+
+/* Somente complementos funcionais; o CSS acima é o original do protótipo. */
+[hidden] { display: none !important; }
+nav button { margin: 0; padding: 10px 6px; background: transparent; color: #204b31; border: 1px solid #b7cbbb; }
+.sessao { text-align: center; font-size: 0.85rem; margin: 8px 10px; }
+.field-error { display: block; color: #a40000; font-size: 0.85rem; margin-top: 4px; }
+.field-error:empty { display: none; }
+[aria-invalid="true"] { border-color: #a40000; }
+.feedback.erro { border-color: #a40000; }
+.feedback.sucesso { background: #e4eee7; border-color: #2f6b45; }
+form > fieldset + fieldset { margin-top: 12px; }
+form + .caixa { margin-top: 18px; }
+.table-wrap { max-width: 100%; overflow-x: auto; }
+.table-action, td small { display: block; }
+.history-item { border-top: 1px solid #bbb; padding: 12px 0; }
+.history-item p { white-space: pre-wrap; }
+.score-card { position: sticky; top: 0; z-index: 2; }
+.score-card h2 { margin: 0 0 4px; font-size: 1.1rem; }
+.score-card p { margin: 4px 0; font-size: 0.85rem; }
+.score-card progress { width: 100%; height: 6px; }
+.score-card small { display: block; }
+.score-card details { font-size: 0.85rem; }
+.score-card dl { display: grid; grid-template-columns: 1fr 1fr; margin: 6px 0; }
+.score-card dd { margin: 0; }
+header { position: relative; }
+.weather-widget { font-size: 0.75rem; padding: 8px; margin: 10px 0 0 auto; max-width: 300px; text-align: left; background: #e4eee7; color: #222; border: 1px solid #b7cbbb; }
+.weather-widget p { margin: 3px 0; }
+.weather-main { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.weather-main strong { font-size: 1rem; }
+.weather-controls { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.weather-controls select { width: auto; flex: 1; }
+.weather-controls select, .weather-controls button { min-height: 32px; padding: 3px 6px; margin: 0; font-size: 0.7rem; }
+.weather-widget a { color: #204b31; }
+@media (min-width: 1000px) {
+    header { min-height: 155px; }
+    .weather-widget { position: absolute; top: 8px; right: 12px; max-width: 260px; margin: 0; }
+}
+@media (min-width: 700px) {
+    nav button { border: 0; width: auto; padding: 6px 10px; min-height: 0; }
+}
