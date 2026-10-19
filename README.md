@@ -8,8 +8,8 @@ Tecnologias usadas:
 - JavaScript
 
 Como abrir:
-2. Abra o arquivo index.html no navegador.
-3. Use o menu e os botões para navegar entre as telas.
+1. Abra o arquivo inicio.html no navegador.
+2. Use o menu e os botões para navegar entre as telas.
 
 Observação:
 Os dados são salvos no navegar, não há autenticação por meio de servidor, não ha banco de dados os dados são perdidos
